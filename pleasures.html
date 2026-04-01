@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pleasures — Stories Hotel Budapest</title>
+<meta name="description" content="Discover the pleasures of Stories Hotel — Bar & Social Lounge, Gym & Fitness, and exclusive Create 26 coworking access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--color-bg); color: var(--color-text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+:root {
+  --color-accent:     #2A5C45;
+  --color-accent-dk:  #1C3E30;
+  --color-gold:       #C09A52;
+  --color-bg:         #F8F5F0;
+  --color-bg-alt:     #FDFCFA;
+  --color-dark:       #111815;
+  --color-text:       #1A1A18;
+  --color-text-sec:   #5C6360;
+  --color-text-muted: #A8ABA6;
+  --color-rule:       #E4E0D8;
+  --nav-h:            80px;
+  --section-pad:      clamp(80px, 10vw, 140px);
+  --container:        1280px;
+  --ease-out:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* NAV — same as rooms.html */
+.nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 1000; background: var(--color-dark); transition: background 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out); }
+.nav.scrolled { background: var(--color-bg); box-shadow: 0 1px 0 var(--color-rule); }
+.nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 clamp(24px,5vw,80px); height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.logo-stories { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase; color: #fff; transition: color 0.45s var(--ease-out); padding-right: 0.38em; }
+.nav.scrolled .logo-stories { color: var(--color-text); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link { font-size: 11px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.3s ease; position: relative; }
+.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--color-gold); transition: width 0.3s var(--ease-out); }
+.nav-link:hover { color: #fff; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active { color: #fff; }
+.nav.scrolled .nav-link { color: var(--color-text-sec); }
+.nav.scrolled .nav-link:hover, .nav.scrolled .nav-link.active { color: var(--color-text); }
+.nav.scrolled .nav-link::after { background: var(--color-accent); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-toggle { font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); cursor: pointer; transition: color 0.3s ease; user-select: none; }
+.lang-toggle:hover { color: rgba(255,255,255,0.9); }
+.nav.scrolled .lang-toggle { color: var(--color-text-muted); }
+.lang-toggle span.active { color: #fff; font-weight: 500; }
+.nav.scrolled .lang-toggle span.active { color: var(--color-text); }
+.btn-book { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.35); padding: 10px 22px; transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+.btn-book:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.nav.scrolled .btn-book { color: var(--color-accent); border-color: var(--color-accent); }
+.nav.scrolled .btn-book:hover { background: var(--color-accent); color: #fff; }
+.menu-toggle { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer; }
+.menu-toggle-icon { position: relative; width: 24px; height: 16px; }
+.menu-toggle-icon span { display: block; position: absolute; left: 0; width: 100%; height: 1.5px; background: #fff; transition: transform 0.45s var(--ease-out), opacity 0.35s ease, width 0.35s ease; transform-origin: center; }
+.nav.scrolled .menu-toggle-icon span { background: var(--color-text); }
+.menu-toggle-icon span:nth-child(1) { top: 0; }
+.menu-toggle-icon span:nth-child(2) { top: 50%; transform: translateY(-50%); width: 75%; }
+.menu-toggle-icon span:nth-child(3) { bottom: 0; width: 50%; }
+.menu-toggle.open .menu-toggle-icon span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); width: 100%; }
+.menu-toggle.open .menu-toggle-icon span:nth-child(2) { opacity: 0; transform: translateY(-50%) scaleX(0); }
+.menu-toggle.open .menu-toggle-icon span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); width: 100%; }
+.menu-toggle.open .menu-toggle-icon span { background: #fff !important; }
+.mobile-menu { position: fixed; inset: 0; background: var(--color-dark); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-out); }
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,6vw,50px); font-weight: 300; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; padding: 6px 0; transform: translateY(24px); opacity: 0; transition: color 0.3s ease, transform 0.5s var(--ease-out), opacity 0.5s var(--ease-out); }
+.mobile-menu.open a { transform: translateY(0); opacity: 1; }
+.mobile-menu.open a:nth-child(1) { transition-delay:0.04s; } .mobile-menu.open a:nth-child(2) { transition-delay:0.08s; } .mobile-menu.open a:nth-child(3) { transition-delay:0.12s; } .mobile-menu.open a:nth-child(4) { transition-delay:0.16s; } .mobile-menu.open a:nth-child(5) { transition-delay:0.20s; } .mobile-menu.open a:nth-child(6) { transition-delay:0.24s; } .mobile-menu.open a:nth-child(7) { transition-delay:0.28s; }
+.mobile-menu a:hover { color: #fff; }
+.mobile-menu-book { font-family: 'DM Sans', sans-serif !important; font-size: 12px !important; letter-spacing: 0.2em !important; text-transform: uppercase; color: var(--color-gold) !important; border: 1px solid rgba(192,154,82,0.5) !important; padding: 12px 40px !important; font-weight: 500 !important; margin-top: 8px; }
+.mobile-menu-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); margin: 8px 0; opacity: 0; transition: opacity 0.4s ease 0.22s; }
+.mobile-menu.open .mobile-menu-divider { opacity: 1; }
+
+/* PAGE HEADER */
+.page-header { padding-top: var(--nav-h); background: var(--color-dark); padding-bottom: clamp(60px,8vw,100px); position: relative; overflow: hidden; }
+.page-header-bg { position: absolute; inset: 0; background-image: url('https://twentysixbudapest.com/wp-content/uploads/2024/07/DSC_5676.jpg'); background-size: cover; background-position: center; opacity: 0.25; }
+.page-header-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,24,21,0.6), rgba(17,24,21,0.95)); }
+.page-header-content { position: relative; z-index: 2; max-width: var(--container); margin: 0 auto; padding: clamp(60px,8vw,100px) clamp(24px,5vw,80px) 0; }
+.page-breadcrumb { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.page-breadcrumb a { color: rgba(255,255,255,0.3); transition: color 0.3s ease; }
+.page-breadcrumb a:hover { color: rgba(255,255,255,0.7); }
+.page-breadcrumb span { color: rgba(255,255,255,0.15); }
+.page-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px,7vw,96px); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: #fff; margin-bottom: 20px; }
+.page-h1 em { font-style: italic; color: rgba(255,255,255,0.55); }
+.page-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.45); max-width: 540px; line-height: 1.7; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out); }
+.reveal-right { opacity: 0; transform: translateX(36px); transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out); }
+.reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+/* PLEASURE BLOCKS — full-bleed editorial style */
+.pleasure-feature {
+  padding: var(--section-pad) 0;
+}
+.pleasure-feature:nth-child(even) { background: var(--color-bg-alt); }
+.pleasure-feature-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(24px,5vw,80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,88px);
+  align-items: center;
+}
+.pleasure-feature.reverse .pleasure-feature-img { order: -1; }
+.pleasure-feature-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.pleasure-feature-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease-out); }
+.pleasure-feature:hover .pleasure-feature-img img { transform: scale(1.04); }
+.pleasure-feature-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,24,21,0.4), transparent 60%); pointer-events: none; }
+.pleasure-feature-tag { position: absolute; bottom: 24px; left: 24px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.65); background: rgba(17,24,21,0.5); padding: 6px 12px; backdrop-filter: blur(4px); }
+.pleasure-feature-text { position: relative; }
+.pleasure-feature-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(80px,12vw,140px); font-weight: 300; line-height: 0.85; color: var(--color-rule); display: block; margin-bottom: 12px; user-select: none; }
+.pleasure-feature-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 20px; display: block; }
+.pleasure-feature-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px,4vw,52px); font-weight: 400; line-height: 1.1; color: var(--color-text); margin-bottom: 20px; }
+.pleasure-feature-p { font-size: 15px; font-weight: 300; color: var(--color-text-sec); line-height: 1.85; margin-bottom: 28px; max-width: 440px; }
+.pleasure-features-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.pleasure-feature-item { font-size: 13px; font-weight: 400; color: var(--color-text-sec); padding-left: 14px; border-left: 2px solid var(--color-accent); line-height: 1.4; }
+.btn-discover { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); border: 1px solid var(--color-accent); padding: 12px 28px; transition: background 0.3s ease, color 0.3s ease; }
+.btn-discover:hover { background: var(--color-accent); color: #fff; }
+
+/* FOOTER */
+.page-footer { background: var(--color-dark); padding: clamp(48px,6vw,80px) clamp(24px,5vw,80px); }
+.page-footer-inner { max-width: var(--container); margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+.footer-brand-stories { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase; color: #fff; display: block; }
+.footer-brand-hotel { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--color-gold); letter-spacing: 0.12em; display: block; margin-top: 3px; }
+.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-links-col { display: flex; flex-direction: column; gap: 12px; }
+.footer-links-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 4px; }
+.footer-links-col a { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.45); transition: color 0.3s ease; }
+.footer-links-col a:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom { max-width: var(--container); margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.2); }
+
+/* BOOKING PANEL */
+.scrim { position: fixed; inset: 0; background: rgba(10,20,15,0); z-index: 1099; pointer-events: none; transition: background 0.45s var(--ease-out); }
+.scrim.active { background: rgba(10,20,15,0.6); pointer-events: all; }
+.booking-panel { position: fixed; top: 0; right: 0; width: 420px; max-width: 100vw; height: 100%; background: var(--color-bg); z-index: 1100; transform: translateX(100%); transition: transform 0.45s var(--ease-out); overflow-y: auto; padding: 60px 40px; }
+.booking-panel.open { transform: translateX(0); }
+.booking-close { position: absolute; top: 28px; right: 28px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text-muted); transition: color 0.3s ease; }
+.booking-close:hover { color: var(--color-text); }
+.booking-close svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.booking-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--color-text); margin-bottom: 8px; }
+.booking-subtitle { font-size: 13px; font-weight: 300; color: var(--color-text-muted); margin-bottom: 44px; }
+.booking-form .form-group { margin-bottom: 28px; }
+.booking-form .form-group label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px; }
+.booking-form input, .booking-form select { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--color-rule); color: var(--color-text); font-size: 15px; font-weight: 300; padding: 6px 0 12px; outline: none; transition: border-color 0.3s ease; appearance: none; -webkit-appearance: none; border-radius: 0; }
+.booking-form input:focus, .booking-form select:focus { border-bottom-color: var(--color-accent); }
+.booking-form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8ABA6' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 24px; cursor: pointer; }
+.guest-stepper { display: flex; align-items: center; gap: 16px; padding: 6px 0 12px; border-bottom: 1px solid var(--color-rule); }
+.stepper-btn { width: 28px; height: 28px; border: 1px solid var(--color-rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--color-text-sec); line-height: 1; transition: border-color 0.3s ease, color 0.3s ease; user-select: none; }
+.stepper-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.stepper-val { font-size: 18px; font-family: 'Cormorant Garamond', serif; color: var(--color-text); min-width: 20px; text-align: center; }
+.btn-check { margin-top: 12px; width: 100%; background: var(--color-accent); color: #fff; border: none; padding: 17px; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease; }
+.btn-check:hover { background: var(--color-accent-dk); }
+
+@media (max-width: 768px) {
+  :root { --nav-h: 60px; }
+  .nav-links { display: none; }
+  .btn-book.desktop-only { display: none; }
+  .menu-toggle { display: flex; }
+  .pleasure-feature-inner { grid-template-columns: 1fr; gap: 32px; }
+  .pleasure-feature.reverse .pleasure-feature-img { order: 0; }
+  .pleasure-feature-img { aspect-ratio: 3/2; }
+  .page-footer-inner { flex-direction: column; gap: 24px; }
+  .booking-panel { width: 100%; padding: 56px 24px 32px; }
+}
+@media (max-width: 480px) { :root { --nav-h: 56px; } }
+* { -webkit-tap-highlight-color: transparent; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html"><span class="logo-stories">Stories</span></a>
+    <div class="nav-links">
+      <a href="rooms.html"           class="nav-link">ROOMS</a>
+      <a href="pleasures.html"       class="nav-link active">PLEASURES</a>
+      <a href="index.html#breakfast" class="nav-link">BREAKFAST</a>
+      <a href="index.html#coworking" class="nav-link">COWORKING</a>
+      <a href="neighbourhood.html"   class="nav-link">NEIGHBOURHOOD</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" onclick="toggleLang()"><span id="lang-en" class="active">EN</span> | <span id="lang-hu">HU</span></div>
+      <button class="btn-book desktop-only" onclick="openBooking()">BOOK</button>
+      <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()"><div class="menu-toggle-icon"><span></span><span></span><span></span></div></div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="rooms.html"           onclick="closeMenu()">Rooms</a>
+  <a href="pleasures.html"       onclick="closeMenu()">Pleasures</a>
+  <a href="index.html#breakfast" onclick="closeMenu()">Breakfast</a>
+  <a href="index.html#coworking" onclick="closeMenu()">Coworking</a>
+  <a href="neighbourhood.html"   onclick="closeMenu()">Neighbourhood</a>
+  <a href="faqs.html"            onclick="closeMenu()">FAQs</a>
+  <a href="contact.html"         onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="#" class="mobile-menu-book" onclick="closeMenu(); openBooking();">Book a Room</a>
+</div>
+
+<header class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <div class="page-breadcrumb"><a href="index.html">Stories Hotel</a><span>/</span><span style="color:rgba(255,255,255,0.55)">Pleasures</span></div>
+    <h1 class="page-h1">Little <em>Luxuries</em></h1>
+    <p class="page-sub">Beyond the room. At Stories, every amenity is considered — from the bar where evenings linger to the gym that keeps you at your best.</p>
+  </div>
+</header>
+
+<!-- BAR & SOCIAL LOUNGE -->
+<section class="pleasure-feature">
+  <div class="pleasure-feature-inner">
+    <div class="pleasure-feature-text reveal-left">
+      <span class="pleasure-feature-num">01</span>
+      <span class="pleasure-feature-label">Bar &amp; Social Lounge</span>
+      <h2 class="pleasure-feature-h2">Where evenings<br>find their rhythm</h2>
+      <p class="pleasure-feature-p">Nestled within the celebrated Twenty Six Budapest building, our bar and social lounge is the pulsing heart of Stories. Curated cocktails, intimate lighting, and the kind of atmosphere that turns strangers into good conversation.</p>
+      <div class="pleasure-features-list">
+        <span class="pleasure-feature-item">Curated cocktail programme</span>
+        <span class="pleasure-feature-item">Extensive natural wine selection</span>
+        <span class="pleasure-feature-item">Seasonal bar snacks &amp; sharing plates</span>
+        <span class="pleasure-feature-item">Live music on selected evenings</span>
+      </div>
+      <a href="contact.html" class="btn-discover">MAKE A RESERVATION →</a>
+    </div>
+    <div class="pleasure-feature-img reveal-right">
+      <img src="https://twentysixbudapest.com/wp-content/uploads/2024/07/DSC_5676.jpg" alt="Bar &amp; Social Lounge" loading="eager">
+      <div class="pleasure-feature-img-overlay"></div>
+      <span class="pleasure-feature-tag">Twenty Six Budapest</span>
+    </div>
+  </div>
+</section>
+
+<!-- GYM & FITNESS -->
+<section class="pleasure-feature reverse">
+  <div class="pleasure-feature-inner">
+    <div class="pleasure-feature-text reveal-right">
+      <span class="pleasure-feature-num">02</span>
+      <span class="pleasure-feature-label">Gym &amp; Fitness</span>
+      <h2 class="pleasure-feature-h2">Move at your<br>best, every day</h2>
+      <p class="pleasure-feature-p">Through our partnership with GoActive — one of Budapest's premier fitness destinations — Stories guests enjoy exclusive, complimentary access to a world-class gym facility right in the heart of the city. State-of-the-art equipment, personal training, and the energy to match your ambitions.</p>
+      <div class="pleasure-features-list">
+        <span class="pleasure-feature-item">Full gym equipment &amp; free weights</span>
+        <span class="pleasure-feature-item">Personal training available on request</span>
+        <span class="pleasure-feature-item">Group fitness classes</span>
+        <span class="pleasure-feature-item">Locker rooms &amp; shower facilities</span>
+      </div>
+      <a href="https://goactive.hu/en/home/" target="_blank" rel="noopener" class="btn-discover">LEARN MORE ABOUT GOACTIVE →</a>
+    </div>
+    <div class="pleasure-feature-img reveal-left">
+      <img src="http://goactive.hu/wp-content/uploads/2020/03/DSC_4774.jpg" alt="Gym &amp; Fitness — GoActive" loading="lazy">
+      <div class="pleasure-feature-img-overlay"></div>
+      <span class="pleasure-feature-tag">GoActive Budapest</span>
+    </div>
+  </div>
+</section>
+
+<!-- COWORKING -->
+<section class="pleasure-feature">
+  <div class="pleasure-feature-inner">
+    <div class="pleasure-feature-text reveal-left">
+      <span class="pleasure-feature-num">03</span>
+      <span class="pleasure-feature-label">Coworking — Create 26</span>
+      <h2 class="pleasure-feature-h2">Your office,<br>thoughtfully designed</h2>
+      <p class="pleasure-feature-p">Create 26 shares our building and our belief that the best work happens in beautiful spaces. As a Stories guest, you have exclusive access to their boutique coworking environment — sunlit private desks, design-forward meeting rooms, and specialty coffee that fuels the creative mind.</p>
+      <div class="pleasure-features-list">
+        <span class="pleasure-feature-item">High-speed WiFi throughout</span>
+        <span class="pleasure-feature-item">Private desks &amp; open hot desking</span>
+        <span class="pleasure-feature-item">Bookable meeting rooms with AV</span>
+        <span class="pleasure-feature-item">Specialty coffee &amp; refreshments</span>
+      </div>
+      <a href="https://create26.hu/en/homepage/" target="_blank" rel="noopener" class="btn-discover">LEARN MORE ABOUT CREATE 26 →</a>
+    </div>
+    <div class="pleasure-feature-img reveal-right">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop" alt="Create 26 Coworking" loading="lazy">
+      <div class="pleasure-feature-img-overlay"></div>
+      <span class="pleasure-feature-tag">Create 26</span>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <div class="footer-brand">
+      <span class="footer-brand-stories">Stories</span>
+      <span class="footer-brand-hotel">hotel</span>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-col">
+        <span class="footer-links-label">Explore</span>
+        <a href="rooms.html">Rooms</a>
+        <a href="pleasures.html">Pleasures</a>
+        <a href="neighbourhood.html">Neighbourhood</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+      <div class="footer-links-col">
+        <span class="footer-links-label">Contact</span>
+        <a href="contact.html">Get in Touch</a>
+        <a href="mailto:hello@storiesbudapest.com">hello@storiesbudapest.com</a>
+        <a href="tel:+3612345678">+36 1 234 5678</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Stories Hotel Budapest. All rights reserved.</p>
+    <p class="footer-copy">Király utca 26, 1061 Budapest</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" onclick="closeBooking()"></div>
+<aside class="booking-panel" id="booking-panel">
+  <button class="booking-close" onclick="closeBooking()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <h2 class="booking-title">Book Your Stay</h2>
+  <p class="booking-subtitle">Every chapter begins with a choice.</p>
+  <form class="booking-form" onsubmit="handleBooking(event)">
+    <div class="form-group"><label>Check-in</label><input type="date" id="checkin" required></div>
+    <div class="form-group"><label>Check-out</label><input type="date" id="checkout" required></div>
+    <div class="form-group"><label>Guests</label><div class="guest-stepper"><div class="stepper-btn" onclick="changeGuests(-1)">−</div><span class="stepper-val" id="guest-count">2</span><div class="stepper-btn" onclick="changeGuests(1)">+</div></div></div>
+    <div class="form-group"><label>Room</label><select id="room-select"><option value="">Any room</option><option value="presidential">Presidential Suite</option><option value="king-jacuzzi">King Suite with Jacuzzi</option><option value="junior">Junior Suite</option><option value="deluxe">Deluxe Room</option><option value="deluxe-queen">Deluxe Queen Room</option><option value="superior">Superior Room</option></select></div>
+    <div class="form-group"><label>Your Email</label><input type="email" id="booking-email" required></div>
+    <button type="submit" class="btn-check">CHECK AVAILABILITY</button>
+  </form>
+</aside>
+
+<script>
+let currentLang = localStorage.getItem('stories-lang') || 'en';
+function toggleLang() { currentLang = currentLang === 'en' ? 'hu' : 'en'; localStorage.setItem('stories-lang', currentLang); document.getElementById('lang-en').classList.toggle('active', currentLang === 'en'); document.getElementById('lang-hu').classList.toggle('active', currentLang === 'hu'); }
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+const mobileMenu = document.getElementById('mobile-menu'), menuToggle = document.getElementById('menu-toggle');
+function toggleMenu() { const o = mobileMenu.classList.toggle('open'); menuToggle.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; }
+function closeMenu() { mobileMenu.classList.remove('open'); menuToggle.classList.remove('open'); document.body.style.overflow = ''; }
+const bookingPanel = document.getElementById('booking-panel'), scrim = document.getElementById('scrim');
+function openBooking() { bookingPanel.classList.add('open'); scrim.classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closeBooking() { bookingPanel.classList.remove('open'); scrim.classList.remove('active'); document.body.style.overflow = ''; }
+let guestCount = 2;
+function changeGuests(d) { guestCount = Math.max(1, Math.min(8, guestCount + d)); document.getElementById('guest-count').textContent = guestCount; }
+function handleBooking(e) { e.preventDefault(); const s = encodeURIComponent('Booking Inquiry – Stories Hotel Budapest'); const b = encodeURIComponent(`Check-in: ${document.getElementById('checkin').value}\nCheck-out: ${document.getElementById('checkout').value}\nGuests: ${guestCount}\nRoom: ${document.getElementById('room-select').value || 'Any'}`); window.location.href = `mailto:hello@storiesbudapest.com?subject=${s}&body=${b}`; }
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQs — Stories Hotel Budapest</title>
+<meta name="description" content="Frequently asked questions about Stories Hotel Budapest — check-in, rooms, facilities, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--color-bg);color:var(--color-text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+img{display:block;max-width:100%;} a{text-decoration:none;color:inherit;} button{border:none;background:none;cursor:pointer;font-family:inherit;}
+:root{
+  --color-accent:#2A5C45;--color-accent-dk:#1C3E30;--color-gold:#C09A52;
+  --color-bg:#F8F5F0;--color-bg-alt:#FDFCFA;--color-dark:#111815;
+  --color-text:#1A1A18;--color-text-sec:#5C6360;--color-text-muted:#A8ABA6;--color-rule:#E4E0D8;
+  --nav-h:80px;--section-pad:clamp(80px,10vw,140px);--container:1280px;
+  --ease-out:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;background:var(--color-dark);transition:background 0.45s var(--ease-out),box-shadow 0.45s var(--ease-out);}
+.nav.scrolled{background:var(--color-bg);box-shadow:0 1px 0 var(--color-rule);}
+.nav-inner{max-width:var(--container);margin:0 auto;padding:0 clamp(24px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.logo-stories{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;letter-spacing:0.38em;text-transform:uppercase;color:#fff;transition:color 0.45s var(--ease-out);padding-right:0.38em;}
+.nav.scrolled .logo-stories{color:var(--color-text);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-link{font-size:11px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);transition:color 0.3s ease;position:relative;}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--color-gold);transition:width 0.3s var(--ease-out);}
+.nav-link:hover{color:#fff;} .nav-link:hover::after,.nav-link.active::after{width:100%;} .nav-link.active{color:#fff;}
+.nav.scrolled .nav-link{color:var(--color-text-sec);} .nav.scrolled .nav-link:hover,.nav.scrolled .nav-link.active{color:var(--color-text);} .nav.scrolled .nav-link::after{background:var(--color-accent);}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.lang-toggle{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.5);cursor:pointer;transition:color 0.3s ease;user-select:none;}
+.lang-toggle:hover{color:rgba(255,255,255,0.9);} .nav.scrolled .lang-toggle{color:var(--color-text-muted);}
+.lang-toggle span.active{color:#fff;font-weight:500;} .nav.scrolled .lang-toggle span.active{color:var(--color-text);}
+.btn-book{font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.35);padding:10px 22px;transition:background 0.3s ease,color 0.3s ease;}
+.btn-book:hover{background:rgba(255,255,255,0.1);color:#fff;} .nav.scrolled .btn-book{color:var(--color-accent);border-color:var(--color-accent);} .nav.scrolled .btn-book:hover{background:var(--color-accent);color:#fff;}
+.menu-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;}
+.menu-toggle-icon{position:relative;width:24px;height:16px;}
+.menu-toggle-icon span{display:block;position:absolute;left:0;width:100%;height:1.5px;background:#fff;transition:transform 0.45s var(--ease-out),opacity 0.35s ease,width 0.35s ease;transform-origin:center;}
+.nav.scrolled .menu-toggle-icon span{background:var(--color-text);}
+.menu-toggle-icon span:nth-child(1){top:0;} .menu-toggle-icon span:nth-child(2){top:50%;transform:translateY(-50%);width:75%;} .menu-toggle-icon span:nth-child(3){bottom:0;width:50%;}
+.menu-toggle.open .menu-toggle-icon span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg);width:100%;} .menu-toggle.open .menu-toggle-icon span:nth-child(2){opacity:0;transform:translateY(-50%) scaleX(0);} .menu-toggle.open .menu-toggle-icon span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg);width:100%;} .menu-toggle.open .menu-toggle-icon span{background:#fff !important;}
+.mobile-menu{position:fixed;inset:0;background:var(--color-dark);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-out);}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,50px);font-weight:300;color:rgba(255,255,255,0.5);letter-spacing:0.06em;padding:6px 0;transform:translateY(24px);opacity:0;transition:color 0.3s ease,transform 0.5s var(--ease-out),opacity 0.5s var(--ease-out);}
+.mobile-menu.open a{transform:translateY(0);opacity:1;}
+.mobile-menu.open a:nth-child(1){transition-delay:0.04s;} .mobile-menu.open a:nth-child(2){transition-delay:0.08s;} .mobile-menu.open a:nth-child(3){transition-delay:0.12s;} .mobile-menu.open a:nth-child(4){transition-delay:0.16s;} .mobile-menu.open a:nth-child(5){transition-delay:0.20s;} .mobile-menu.open a:nth-child(6){transition-delay:0.24s;} .mobile-menu.open a:nth-child(7){transition-delay:0.28s;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu-book{font-family:'DM Sans',sans-serif !important;font-size:12px !important;letter-spacing:0.2em !important;text-transform:uppercase;color:var(--color-gold) !important;border:1px solid rgba(192,154,82,0.5) !important;padding:12px 40px !important;font-weight:500 !important;margin-top:8px;}
+.mobile-menu-divider{width:1px;height:32px;background:rgba(255,255,255,0.1);margin:8px 0;opacity:0;transition:opacity 0.4s ease 0.22s;}
+.mobile-menu.open .mobile-menu-divider{opacity:1;}
+
+/* PAGE HEADER */
+.page-header{padding-top:var(--nav-h);background:var(--color-dark);padding-bottom:clamp(60px,8vw,100px);position:relative;}
+.page-header-overlay{position:absolute;inset:0;background:rgba(17,24,21,0.97);}
+.page-header-content{position:relative;z-index:2;max-width:var(--container);margin:0 auto;padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px) 0;}
+.page-breadcrumb{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:24px;display:flex;align-items:center;gap:10px;}
+.page-breadcrumb a{color:rgba(255,255,255,0.3);transition:color 0.3s ease;} .page-breadcrumb a:hover{color:rgba(255,255,255,0.7);} .page-breadcrumb span{color:rgba(255,255,255,0.15);}
+.page-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;line-height:1.0;letter-spacing:-0.02em;color:#fff;margin-bottom:20px;}
+.page-h1 em{font-style:italic;color:rgba(255,255,255,0.55);}
+.page-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);max-width:480px;line-height:1.7;}
+
+/* FAQ SECTION */
+.faq-section{padding:var(--section-pad) 0;}
+.faq-inner{max-width:var(--container);margin:0 auto;padding:0 clamp(24px,5vw,80px);display:grid;grid-template-columns:280px 1fr;gap:clamp(40px,6vw,80px);align-items:start;}
+.faq-categories{position:sticky;top:calc(var(--nav-h) + 32px);}
+.faq-cat-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:20px;display:block;}
+.faq-cat-btn{display:block;font-size:13px;font-weight:400;color:var(--color-text-sec);padding:10px 0;border-bottom:1px solid var(--color-rule);cursor:pointer;transition:color 0.3s ease;text-align:left;width:100%;}
+.faq-cat-btn:hover,.faq-cat-btn.active{color:var(--color-accent);}
+.faq-cat-btn.active{font-weight:500;}
+.faq-content{}
+.faq-group{margin-bottom:48px;}
+.faq-group:last-child{margin-bottom:0;}
+.faq-group-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,32px);font-weight:400;color:var(--color-text);margin-bottom:8px;padding-bottom:20px;border-bottom:1px solid var(--color-rule);}
+.faq-item{border-bottom:1px solid var(--color-rule);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;cursor:pointer;font-size:15px;font-weight:400;color:var(--color-text);transition:color 0.3s ease;}
+.faq-q:hover{color:var(--color-accent);}
+.faq-q-icon{flex-shrink:0;width:20px;height:20px;position:relative;transition:transform 0.35s var(--ease-out);}
+.faq-q-icon::before,.faq-q-icon::after{content:'';position:absolute;background:currentColor;border-radius:1px;}
+.faq-q-icon::before{width:12px;height:1.5px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.faq-q-icon::after{width:1.5px;height:12px;top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 0.35s var(--ease-out),opacity 0.35s ease;}
+.faq-item.open .faq-q-icon::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
+.faq-item.open .faq-q{color:var(--color-accent);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease-out);}
+.faq-a-inner{padding:0 0 20px;font-size:14px;font-weight:300;color:var(--color-text-sec);line-height:1.8;}
+.faq-a-inner a{color:var(--color-accent);border-bottom:1px solid rgba(42,92,69,0.3);transition:border-color 0.3s ease;}
+.faq-a-inner a:hover{border-color:var(--color-accent);}
+
+/* FOOTER */
+.page-footer{background:var(--color-dark);padding:clamp(48px,6vw,80px) clamp(24px,5vw,80px);}
+.page-footer-inner{max-width:var(--container);margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:32px;}
+.footer-brand-stories{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:0.38em;text-transform:uppercase;color:#fff;display:block;}
+.footer-brand-hotel{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--color-gold);letter-spacing:0.12em;display:block;margin-top:3px;}
+.footer-links{display:flex;gap:40px;flex-wrap:wrap;}
+.footer-links-col{display:flex;flex-direction:column;gap:12px;}
+.footer-links-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;}
+.footer-links-col a{font-size:13px;font-weight:300;color:rgba(255,255,255,0.45);transition:color 0.3s ease;}
+.footer-links-col a:hover{color:rgba(255,255,255,0.85);}
+.footer-bottom{max-width:var(--container);margin:32px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:12px;font-weight:300;color:rgba(255,255,255,0.2);}
+
+/* BOOKING */
+.scrim{position:fixed;inset:0;background:rgba(10,20,15,0);z-index:1099;pointer-events:none;transition:background 0.45s var(--ease-out);}
+.scrim.active{background:rgba(10,20,15,0.6);pointer-events:all;}
+.booking-panel{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100%;background:var(--color-bg);z-index:1100;transform:translateX(100%);transition:transform 0.45s var(--ease-out);overflow-y:auto;padding:60px 40px;}
+.booking-panel.open{transform:translateX(0);}
+.booking-close{position:absolute;top:28px;right:28px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--color-text-muted);transition:color 0.3s ease;}
+.booking-close:hover{color:var(--color-text);}
+.booking-close svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.booking-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--color-text);margin-bottom:8px;}
+.booking-subtitle{font-size:13px;font-weight:300;color:var(--color-text-muted);margin-bottom:44px;}
+.booking-form .form-group{margin-bottom:28px;}
+.booking-form .form-group label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);display:block;margin-bottom:8px;}
+.booking-form input,.booking-form select{width:100%;background:transparent;border:none;border-bottom:1px solid var(--color-rule);color:var(--color-text);font-size:15px;font-weight:300;padding:6px 0 12px;outline:none;transition:border-color 0.3s ease;appearance:none;-webkit-appearance:none;border-radius:0;}
+.booking-form input:focus,.booking-form select:focus{border-bottom-color:var(--color-accent);}
+.booking-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8ABA6' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:24px;cursor:pointer;}
+.guest-stepper{display:flex;align-items:center;gap:16px;padding:6px 0 12px;border-bottom:1px solid var(--color-rule);}
+.stepper-btn{width:28px;height:28px;border:1px solid var(--color-rule);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--color-text-sec);line-height:1;transition:border-color 0.3s ease,color 0.3s ease;user-select:none;}
+.stepper-btn:hover{border-color:var(--color-accent);color:var(--color-accent);}
+.stepper-val{font-size:18px;font-family:'Cormorant Garamond',serif;color:var(--color-text);min-width:20px;text-align:center;}
+.btn-check{margin-top:12px;width:100%;background:var(--color-accent);color:#fff;border:none;padding:17px;font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 0.3s ease;}
+.btn-check:hover{background:var(--color-accent-dk);}
+
+@media (max-width:1024px){.faq-inner{grid-template-columns:1fr;} .faq-categories{position:static;} .faq-cat-btns{display:flex;flex-wrap:wrap;gap:8px;} .faq-cat-btn{border:1px solid var(--color-rule);padding:8px 16px;font-size:12px;border-bottom-color:var(--color-rule);}}
+@media (max-width:768px){:root{--nav-h:60px;} .nav-links{display:none;} .btn-book.desktop-only{display:none;} .menu-toggle{display:flex;} .page-footer-inner{flex-direction:column;gap:24px;} .footer-links{gap:24px;} .booking-panel{width:100%;padding:56px 24px 32px;}}
+@media (max-width:480px){:root{--nav-h:56px;}}
+*{-webkit-tap-highlight-color:transparent;}
+::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--color-bg);} ::-webkit-scrollbar-thumb{background:var(--color-rule);border-radius:2px;}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html"><span class="logo-stories">Stories</span></a>
+    <div class="nav-links">
+      <a href="rooms.html"           class="nav-link">ROOMS</a>
+      <a href="pleasures.html"       class="nav-link">PLEASURES</a>
+      <a href="index.html#breakfast" class="nav-link">BREAKFAST</a>
+      <a href="index.html#coworking" class="nav-link">COWORKING</a>
+      <a href="neighbourhood.html"   class="nav-link">NEIGHBOURHOOD</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" onclick="toggleLang()"><span id="lang-en" class="active">EN</span> | <span id="lang-hu">HU</span></div>
+      <button class="btn-book desktop-only" onclick="openBooking()">BOOK</button>
+      <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()"><div class="menu-toggle-icon"><span></span><span></span><span></span></div></div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="rooms.html"           onclick="closeMenu()">Rooms</a>
+  <a href="pleasures.html"       onclick="closeMenu()">Pleasures</a>
+  <a href="index.html#breakfast" onclick="closeMenu()">Breakfast</a>
+  <a href="index.html#coworking" onclick="closeMenu()">Coworking</a>
+  <a href="neighbourhood.html"   onclick="closeMenu()">Neighbourhood</a>
+  <a href="faqs.html"            onclick="closeMenu()">FAQs</a>
+  <a href="contact.html"         onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="#" class="mobile-menu-book" onclick="closeMenu(); openBooking();">Book a Room</a>
+</div>
+
+<header class="page-header">
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <div class="page-breadcrumb"><a href="index.html">Stories Hotel</a><span>/</span><span style="color:rgba(255,255,255,0.55)">FAQs</span></div>
+    <h1 class="page-h1">Frequently<br><em>Asked Questions</em></h1>
+    <p class="page-sub">Everything you need to know before your stay. Can't find an answer? <a href="contact.html" style="color:var(--color-gold);border-bottom:1px solid rgba(192,154,82,0.4)">Get in touch</a>.</p>
+  </div>
+</header>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-categories">
+      <span class="faq-cat-label">Categories</span>
+      <div class="faq-cat-btns">
+        <button class="faq-cat-btn active" onclick="scrollToGroup('arrival')">Arrival &amp; Departure</button>
+        <button class="faq-cat-btn" onclick="scrollToGroup('rooms')">Rooms</button>
+        <button class="faq-cat-btn" onclick="scrollToGroup('amenities')">Amenities</button>
+        <button class="faq-cat-btn" onclick="scrollToGroup('dining')">Dining</button>
+        <button class="faq-cat-btn" onclick="scrollToGroup('location')">Location</button>
+      </div>
+    </div>
+
+    <div class="faq-content">
+
+      <div class="faq-group" id="faq-arrival">
+        <h2 class="faq-group-title">Arrival &amp; Departure</h2>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>What are the check-in and check-out times?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Check-in is from 15:00. Check-out is by 11:00. Early check-in and late check-out may be available on request, subject to availability. Please <a href="contact.html">contact us</a> in advance if you need special arrangements.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Can I store my luggage before check-in or after check-out?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, luggage storage is complimentary for all guests, whether you're arriving early or extending your day after check-out. Our front desk team will take care of your bags.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is there parking available at the hotel?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Stories Hotel does not have private parking. However, several public car parks are available within walking distance of Király utca. We are happy to recommend the nearest options on request. Budapest's public transport is excellent — the hotel is very well connected.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>How do I get from Budapest Airport to the hotel?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">The hotel is approximately 30–40 minutes from Budapest Liszt Ferenc International Airport. We recommend the 100E airport bus (direct to Deák Ferenc tér, then a short walk or taxi), a taxi, or a pre-booked transfer. We can arrange airport transfers — please <a href="contact.html">contact us</a>.</div></div>
+        </div>
+      </div>
+
+      <div class="faq-group" id="faq-rooms">
+        <h2 class="faq-group-title">Rooms</h2>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>How many room types do you offer?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">We offer six distinct room categories: Presidential Suite (165–180 m²), King Suite with Jacuzzi (85 m²), Junior Suite (65–75 m²), Deluxe Room (34–45 m²), Deluxe Queen Room (30 m²), and Superior Room (17 m²). Each is individually designed. <a href="rooms.html">View all rooms →</a></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Do rooms have air conditioning?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, all rooms are fully air-conditioned with individual climate control, allowing you to set your preferred temperature throughout your stay.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is WiFi available in the rooms?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Complimentary high-speed WiFi is available throughout the hotel, including all guest rooms, common areas, and via Create 26 coworking access.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Are pets allowed?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">We welcome small, well-behaved pets in select rooms. Please notify us at the time of booking. A small daily pet fee applies. Please <a href="contact.html">contact us</a> before your visit to confirm arrangements.</div></div>
+        </div>
+      </div>
+
+      <div class="faq-group" id="faq-amenities">
+        <h2 class="faq-group-title">Amenities</h2>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Do guests have access to a gym?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes — through our exclusive partnership with <strong>GoActive</strong>, Stories Hotel guests enjoy complimentary access to a world-class fitness facility in central Budapest. State-of-the-art equipment, personal training, and group classes are all available. <a href="pleasures.html">Learn more →</a></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is there coworking access for guests?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Stories guests have exclusive access to <strong>Create 26</strong>, a boutique coworking space sharing our building. Private desks, meeting rooms, high-speed WiFi, and specialty coffee are all included. <a href="pleasures.html">Learn more →</a></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is there a bar at the hotel?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Our Bar &amp; Social Lounge is located within the Twenty Six Budapest building and is open to guests and the public. Curated cocktails, natural wines, and a thoughtful bar food menu are available daily.</div></div>
+        </div>
+      </div>
+
+      <div class="faq-group" id="faq-dining">
+        <h2 class="faq-group-title">Dining</h2>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is breakfast included?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Breakfast is available as an add-on to your booking. It is served in the Twenty Six restaurant from 07:00 to 11:00. Our breakfast features local Hungarian produce, daily-baked pastries, and a seasonal menu. Please indicate at booking whether you'd like breakfast included.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Can dietary requirements be accommodated?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Absolutely. Please inform us of any dietary requirements, allergies, or preferences at the time of booking or no later than 48 hours before your arrival. We'll ensure the kitchen is prepared to accommodate you.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is room service available?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Selected in-room dining options are available. Please speak with our front desk team upon arrival for current room service hours and menu options.</div></div>
+        </div>
+      </div>
+
+      <div class="faq-group" id="faq-location">
+        <h2 class="faq-group-title">Location</h2>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Where exactly is the hotel located?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">Stories Hotel is located at <strong>Király utca 26, 1061 Budapest</strong>, in the heart of the VI. District — one of Budapest's most vibrant neighbourhoods, close to Andrássy Avenue, the Opera House, and the Jewish Quarter. <a href="neighbourhood.html">Explore the neighbourhood →</a></div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>How close is the hotel to the city's main attractions?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">The hotel is within easy walking or public transport reach of Budapest's most celebrated sights — St. Stephen's Basilica (10 min walk), Heroes' Square (20 min walk), the Danube riverbanks (15 min), and the Great Market Hall (20 min).</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>What public transport is nearby?</span><span class="faq-q-icon"></span></div>
+          <div class="faq-a"><div class="faq-a-inner">The hotel is excellently connected. Nyugati metro station (line M3) is a 5-minute walk. Multiple tram and bus lines stop nearby on Teréz körút and Bajcsy-Zsilinszky út. <a href="neighbourhood.html">View transport details →</a></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <div>
+      <span class="footer-brand-stories">Stories</span>
+      <span class="footer-brand-hotel">hotel</span>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-col">
+        <span class="footer-links-label">Explore</span>
+        <a href="rooms.html">Rooms</a>
+        <a href="pleasures.html">Pleasures</a>
+        <a href="neighbourhood.html">Neighbourhood</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+      <div class="footer-links-col">
+        <span class="footer-links-label">Contact</span>
+        <a href="contact.html">Get in Touch</a>
+        <a href="mailto:hello@storiesbudapest.com">hello@storiesbudapest.com</a>
+        <a href="tel:+3612345678">+36 1 234 5678</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Stories Hotel Budapest. All rights reserved.</p>
+    <p class="footer-copy">Király utca 26, 1061 Budapest</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" onclick="closeBooking()"></div>
+<aside class="booking-panel" id="booking-panel">
+  <button class="booking-close" onclick="closeBooking()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <h2 class="booking-title">Book Your Stay</h2>
+  <p class="booking-subtitle">Every chapter begins with a choice.</p>
+  <form class="booking-form" onsubmit="handleBooking(event)">
+    <div class="form-group"><label>Check-in</label><input type="date" id="checkin" required></div>
+    <div class="form-group"><label>Check-out</label><input type="date" id="checkout" required></div>
+    <div class="form-group"><label>Guests</label><div class="guest-stepper"><div class="stepper-btn" onclick="changeGuests(-1)">−</div><span class="stepper-val" id="guest-count">2</span><div class="stepper-btn" onclick="changeGuests(1)">+</div></div></div>
+    <div class="form-group"><label>Room</label><select id="room-select"><option value="">Any room</option><option>Presidential Suite</option><option>King Suite with Jacuzzi</option><option>Junior Suite</option><option>Deluxe Room</option><option>Deluxe Queen Room</option><option>Superior Room</option></select></div>
+    <div class="form-group"><label>Your Email</label><input type="email" id="booking-email" required></div>
+    <button type="submit" class="btn-check">CHECK AVAILABILITY</button>
+  </form>
+</aside>
+
+<script>
+let currentLang = localStorage.getItem('stories-lang') || 'en';
+function toggleLang() { currentLang = currentLang === 'en' ? 'hu' : 'en'; localStorage.setItem('stories-lang', currentLang); document.getElementById('lang-en').classList.toggle('active', currentLang === 'en'); document.getElementById('lang-hu').classList.toggle('active', currentLang === 'hu'); }
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+const mobileMenu = document.getElementById('mobile-menu'), menuToggle = document.getElementById('menu-toggle');
+function toggleMenu() { const o = mobileMenu.classList.toggle('open'); menuToggle.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; }
+function closeMenu() { mobileMenu.classList.remove('open'); menuToggle.classList.remove('open'); document.body.style.overflow = ''; }
+const bookingPanel = document.getElementById('booking-panel'), scrim = document.getElementById('scrim');
+function openBooking() { bookingPanel.classList.add('open'); scrim.classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closeBooking() { bookingPanel.classList.remove('open'); scrim.classList.remove('active'); document.body.style.overflow = ''; }
+let guestCount = 2;
+function changeGuests(d) { guestCount = Math.max(1, Math.min(8, guestCount + d)); document.getElementById('guest-count').textContent = guestCount; }
+function handleBooking(e) { e.preventDefault(); const s = encodeURIComponent('Booking Inquiry'); window.location.href = `mailto:hello@storiesbudapest.com?subject=${s}`; }
+
+function toggleFaq(qEl) {
+  const item = qEl.closest('.faq-item');
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+function scrollToGroup(id) {
+  document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const map = { arrival:'faq-arrival', rooms:'faq-rooms', amenities:'faq-amenities', dining:'faq-dining', location:'faq-location' };
+  const el = document.getElementById(map[id]);
+  if (el) { const top = el.getBoundingClientRect().top + window.scrollY - 120; window.scrollTo({ top, behavior: 'smooth' }); }
+}
+</script>
+</body>
+</html>
